@@ -21,9 +21,9 @@ UI - Material Design 3
     <td>Details Screen</td>
   </tr>
   <tr>
-    <td valign="top"><gif src="https://i.imgur.com/LpqDInD.gif" align="right" width="350dp"></td>
+    <td valign="top"><img src="https://i.imgur.com/PngJdaL.png" align="right" width="350dp"></td>
     <td valign="top"><img src="https://i.imgur.com/ZdOBE2B.gif" align="left" width="350dp"></td>
-    <td valign="top"><img src="https://i.imgur.com/2ru0HUr.gif" align="right" width="350dp"></td>
+    <td valign="top"><img src="https://i.imgur.com/Mzx1Wiy.png" align="right" width="350dp"></td>
   </tr>
   <tr>
     <td>Audio Screen</td>
@@ -32,7 +32,7 @@ UI - Material Design 3
   </tr>
   <tr>
     <td valign="top"><img src="https://i.imgur.com/C910o0A.gif" align="left" width="350dp"></td>
-    <td valign="top"><img src="https://i.imgur.com/qxiRmvD.gif" align="right" width="350dp"></td>
+    <td valign="top"><img src="https://i.imgur.com/6gmnupr.png" align="right" width="350dp"></td>
     <td valign="top"><img src="https://i.imgur.com/UJEg1sR.gif" align="left" width="350dp"></td>
   </tr>
  </table>
