@@ -60,9 +60,7 @@ internal fun SettingsDialogItem(
             )
         }
         Divider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             color = MaterialTheme.colorScheme.outlineVariant,
         )
     }

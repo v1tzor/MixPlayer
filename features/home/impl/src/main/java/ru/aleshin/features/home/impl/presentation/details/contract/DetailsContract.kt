@@ -28,13 +28,13 @@ import ru.aleshin.features.home.impl.domain.entities.HomeFailures
 @Parcelize
 internal data class DetailsViewState(
     val isLoading: Boolean = true,
-    val playlist: AudioPlayListUi? = null,
+    val playList: AudioPlayListUi? = null,
 ) : BaseViewState
 
 internal sealed class DetailsEvent : BaseEvent {
     object Init : DetailsEvent()
     object PressBackButton : DetailsEvent()
-    data class PressTrackItem(val track: AudioInfoUi) : DetailsEvent()
+    data class PressAudioItem(val track: AudioInfoUi) : DetailsEvent()
 }
 
 internal sealed class DetailsEffect : BaseUiEffect {
@@ -44,5 +44,5 @@ internal sealed class DetailsEffect : BaseUiEffect {
 internal sealed class DetailsAction : BaseAction {
     object Navigation : DetailsAction()
     data class UpdateLoading(val isLoading: Boolean) : DetailsAction()
-    data class UpdatePlaylist(val playlist: AudioPlayListUi) : DetailsAction()
+    data class UpdatePlayList(val playList: AudioPlayListUi) : DetailsAction()
 }

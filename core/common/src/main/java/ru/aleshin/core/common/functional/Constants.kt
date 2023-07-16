@@ -29,12 +29,6 @@ object Constants {
         const val ACTION_PREVIOUS = "PLAYER_ACTION_PREVIOUS_TRACK"
     }
 
-    object Alarm {
-        const val ALARM_NOTIFICATION_ACTION = "ru.aleshin.ALARM_NOTIFICATION_ACTION"
-        const val NOTIFICATION_ICON = "ALARM_DATA_ICON"
-        const val APP_ICON = "ALARM_DATA_APP_ICON"
-    }
-
     object Delay {
         const val SLIDER_POSITION_UPDATE = 500L
         const val AUTH = 500L
@@ -43,6 +37,7 @@ object Constants {
         const val SPLASH = 2000L
         const val SPLASH_TEXT = 800L
         const val CHECK_STATUS = 5000L
+        const val SETUP = 200L
     }
 
     object Date {

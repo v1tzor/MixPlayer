@@ -28,7 +28,6 @@ import ru.aleshin.features.home.impl.presentation.home.contract.HomeAction
 import ru.aleshin.features.home.impl.presentation.home.contract.HomeEffect
 import ru.aleshin.features.home.impl.presentation.home.contract.HomeEvent
 import ru.aleshin.features.home.impl.presentation.home.contract.HomeViewState
-import ru.aleshin.features.player.api.navigation.PlayerScreens
 import javax.inject.Inject
 
 /**
@@ -59,7 +58,7 @@ internal class HomeScreenModel @Inject constructor(
         when (event) {
             is HomeEvent.Init, HomeEvent.Refresh -> {
                 sendAction(HomeAction.UpdateLoading(true))
-                homeWorkProcessor.work(HomeWorkCommand.LoadTracks).handleWork()
+                homeWorkProcessor.work(HomeWorkCommand.LoadMedia).handleWork()
             }
             is HomeEvent.SearchRequest -> {
                 val playLists = state().playLists

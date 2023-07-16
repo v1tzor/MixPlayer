@@ -17,10 +17,8 @@
 package ru.aleshin.features.player.impl.presentation.nav
 
 import androidx.compose.runtime.Composable
-import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.CurrentScreen
-import cafe.adriel.voyager.navigator.NavigatorDisposeBehavior
 import ru.aleshin.core.common.navigation.navigator.AppNavigator
 import ru.aleshin.core.common.navigation.navigator.rememberNavigatorManager
 import ru.aleshin.features.player.impl.presentation.theme.PlayerTheme

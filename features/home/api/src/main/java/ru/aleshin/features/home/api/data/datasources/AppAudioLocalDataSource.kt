@@ -16,7 +16,6 @@
 
 package ru.aleshin.features.home.api.data.datasources
 
-import android.content.Context
 import ru.aleshin.features.home.api.data.models.AudioInfoModel
 import javax.inject.Inject
 
@@ -28,9 +27,7 @@ interface AppAudioLocalDataSource {
 
     suspend fun fetchAllAppTracks(): List<AudioInfoModel>
 
-    class Base @Inject constructor(
-        private val applicationContext: Context,
-    ) : AppAudioLocalDataSource {
+    class Base @Inject constructor() : AppAudioLocalDataSource {
 
         override suspend fun fetchAllAppTracks(): List<AudioInfoModel> {
             // TODO: Add data

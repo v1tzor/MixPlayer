@@ -39,11 +39,11 @@ internal data class HomeViewState(
 internal sealed class HomeEvent : BaseEvent {
     object Init : HomeEvent()
     object Refresh : HomeEvent()
-    data class PressMoreButton(val playlistType: AudioPlayListType) : HomeEvent()
-    data class SearchRequest(val request: String) : HomeEvent()
+    object PressSettingsButton : HomeEvent()
     data class PressAudioItem(val item: AudioInfoUi, val playlist: AudioPlayListUi) : HomeEvent()
     data class PressVideoItem(val item: VideoInfoUi) : HomeEvent()
-    object PressSettingsButton : HomeEvent()
+    data class SearchRequest(val request: String) : HomeEvent()
+    data class PressMoreButton(val playlistType: AudioPlayListType) : HomeEvent()
 }
 
 internal sealed class HomeEffect : BaseUiEffect {
@@ -53,6 +53,6 @@ internal sealed class HomeEffect : BaseUiEffect {
 internal sealed class HomeAction : BaseAction {
     object Navigate : HomeAction()
     data class UpdateLoading(val isLoading: Boolean) : HomeAction()
-    data class UpdateResponse(val searchResponse: MediaSearchResponse?) : HomeAction()
     data class UpdateMedia(val playLists: List<AudioPlayListUi>, val videos: List<VideoInfoUi>) : HomeAction()
+    data class UpdateResponse(val searchResponse: MediaSearchResponse?) : HomeAction()
 }

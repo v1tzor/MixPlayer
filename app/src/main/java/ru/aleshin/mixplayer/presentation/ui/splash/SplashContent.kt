@@ -30,7 +30,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -43,8 +42,6 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import ru.aleshin.core.common.functional.Constants
 import ru.aleshin.core.ui.theme.MixPlayerRes
-import ru.aleshin.core.ui.theme.MixPlayerTheme
-import ru.aleshin.core.ui.theme.material.ThemeUiType
 import ru.aleshin.core.ui.theme.material.onSplash
 import ru.aleshin.core.ui.theme.material.splash
 

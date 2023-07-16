@@ -34,8 +34,7 @@ import javax.inject.Inject
 /**
  * @author Stanislav Aleshin on 12.07.2023.
  */
-internal interface DetailsWorkProcessor :
-    FlowWorkProcessor<DetailsWorkCommand, DetailsAction, DetailsEffect> {
+internal interface DetailsWorkProcessor : FlowWorkProcessor<DetailsWorkCommand, DetailsAction, DetailsEffect> {
 
     class Base @Inject constructor(
         private val detailsInfoCommunicator: DetailsInfoCommunicator,
@@ -44,28 +43,27 @@ internal interface DetailsWorkProcessor :
 
         override suspend fun work(command: DetailsWorkCommand) = when (command) {
             is DetailsWorkCommand.LoadPlaylist -> loadPlaylistWork()
-            is DetailsWorkCommand.PlayAudio -> playAudioWork(command.audio, command.playlist)
+            is DetailsWorkCommand.PlayAudio -> playAudioWork(command.audio, command.playList)
             is DetailsWorkCommand.NavigateToBack -> navigateToBackWork()
         }
 
-
-        private fun playAudioWork(
-            audio: AudioInfoUi,
-            playlists: AudioPlayListUi
-        ) = flow<WorkResult<DetailsAction, DetailsEffect>> {
-            navigationManager.navigateToPlayer(PlayerScreens.Audio(audio, playlists.listType))
-        }
 
         private suspend fun loadPlaylistWork() = flow {
             emit(ActionResult(DetailsAction.UpdateLoading(true)))
             detailsInfoCommunicator.collect { details ->
                 if (details != null) {
                     delay(Constants.Delay.LOAD_ANIMATION)
-                    emit(ActionResult(DetailsAction.UpdatePlaylist(details)))
-                    emit(ActionResult(DetailsAction.UpdateLoading(false)))
+                    emit(ActionResult(DetailsAction.UpdatePlayList(details)))
                     detailsInfoCommunicator.update(null)
                 }
             }
+        }
+
+        private fun playAudioWork(
+            audio: AudioInfoUi,
+            playLists: AudioPlayListUi
+        ) = flow<WorkResult<DetailsAction, DetailsEffect>> {
+            navigationManager.navigateToPlayer(PlayerScreens.Audio(audio, playLists.listType))
         }
 
         private fun navigateToBackWork() = flow {
@@ -78,6 +76,5 @@ internal interface DetailsWorkProcessor :
 internal sealed class DetailsWorkCommand : WorkCommand {
     object LoadPlaylist : DetailsWorkCommand()
     object NavigateToBack : DetailsWorkCommand()
-    data class PlayAudio(val audio: AudioInfoUi, val playlist: AudioPlayListUi) :
-        DetailsWorkCommand()
+    data class PlayAudio(val audio: AudioInfoUi, val playList: AudioPlayListUi) : DetailsWorkCommand()
 }

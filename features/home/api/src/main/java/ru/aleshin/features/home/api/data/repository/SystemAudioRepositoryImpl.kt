@@ -31,9 +31,9 @@ class SystemAudioRepositoryImpl @Inject constructor(
 ) : SystemAudioRepository {
 
     override suspend fun fetchPlaylist(): AudioPlayList {
-        val tracks = localDataSource.fetchAllSystemTracks().map { audioInfo ->
+        val audioList = localDataSource.fetchAllSystemTracks().map { audioInfo ->
             audioInfo.mapToDomain()
         }
-        return AudioPlayList(type = AudioPlayListType.SYSTEM, audioList = tracks)
+        return AudioPlayList(type = AudioPlayListType.SYSTEM, audioList = audioList)
     }
 }

@@ -63,7 +63,6 @@ internal class SettingsScreenModel @Inject constructor(
                 val settings = checkNotNull(event.settings)
                 settingsWorkProcessor.work(SettingsWorkCommand.ChangeGeneralSettings(settings)).collectAndHandleWork()
             }
-            is SettingsEvent.PressResetButton -> {}
             is SettingsEvent.PressBackButton -> navigationManager.navigateToBack()
         }
     }
@@ -72,10 +71,10 @@ internal class SettingsScreenModel @Inject constructor(
         action: SettingsAction,
         currentState: SettingsViewState,
     ) = when (action) {
+        is SettingsAction.Navigate -> currentState.copy()
         is SettingsAction.UpdateSettings -> currentState.copy(
             generalSettings = action.general,
         )
-        is SettingsAction.Navigate -> currentState.copy()
     }
 }
 

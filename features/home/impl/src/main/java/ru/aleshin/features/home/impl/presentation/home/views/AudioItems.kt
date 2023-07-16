@@ -94,11 +94,7 @@ internal fun AudioItem(
                 modifier = Modifier.padding(vertical = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Column(
-                    modifier = Modifier
-                        .padding(horizontal = 12.dp)
-                        .weight(1f)
-                ) {
+                Column(modifier = Modifier.padding(horizontal = 12.dp).weight(1f)) {
                     Text(
                         text = authorOrAlbum,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -113,11 +109,7 @@ internal fun AudioItem(
                 }
                 Divider()
                 Column(modifier = Modifier, verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 12.dp)
-                    ) {
+                    Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp)) {
                         Text(
                             modifier = Modifier.weight(1f),
                             text = duration,

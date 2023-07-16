@@ -24,17 +24,14 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.unit.dp
 import ru.aleshin.core.common.extensions.mapAudioPathToPreview
 import ru.aleshin.core.common.extensions.toSecondsAndMinutesString
 import ru.aleshin.core.common.functional.audio.AudioInfoUi
-import ru.aleshin.core.common.managers.toImageBitmap
 import ru.aleshin.features.home.impl.presentation.details.contract.DetailsViewState
 import ru.aleshin.features.home.impl.presentation.home.views.EmptyAudioItem
 import ru.aleshin.features.home.impl.presentation.home.views.AudioItem
 import ru.aleshin.features.home.impl.presentation.home.views.AudioItemPlaceholder
-import java.text.SimpleDateFormat
 
 /**
  * @author Stanislav Aleshin on 12.07.2023.
@@ -53,7 +50,7 @@ internal fun DetailsContent(
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         userScrollEnabled = !state.isLoading,
     ) {
-        val playlist = state.playlist
+        val playlist = state.playList
         if (playlist != null && playlist.audioList.isNotEmpty()) {
             items(playlist.audioList, key = { it.id }) { track ->
                 AudioItem(

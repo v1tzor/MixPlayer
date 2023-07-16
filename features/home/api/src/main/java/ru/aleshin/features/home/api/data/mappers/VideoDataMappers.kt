@@ -16,7 +16,6 @@
 
 package ru.aleshin.features.home.api.data.mappers
 
-import ru.aleshin.core.common.managers.BitmapUtils
 import ru.aleshin.features.home.api.data.models.VideoInfoModel
 import ru.aleshin.features.home.api.domain.entities.VideoInfo
 

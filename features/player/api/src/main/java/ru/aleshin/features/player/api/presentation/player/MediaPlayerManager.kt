@@ -19,10 +19,8 @@ package ru.aleshin.features.player.api.presentation.player
 import android.content.Context
 import android.media.MediaPlayer
 import android.net.Uri
-import android.util.Log
 import ru.aleshin.core.common.functional.audio.AudioInfoUi
 import ru.aleshin.core.common.functional.audio.AudioPlayListType
-import ru.aleshin.core.common.functional.audio.AudioPlayListUi
 import ru.aleshin.core.common.functional.audio.PlaybackInfoUi
 import ru.aleshin.core.common.functional.audio.PlayerError
 
@@ -40,13 +38,10 @@ interface MediaPlayerManager : MediaPlayerVolume, MediaPlayerListeners {
     fun fetchPosition(): Int
     fun isPlaying(): Boolean
 
-    class Base(
-        private val context: Context,
-        private val store: PlayerInfoStore
-    ) : MediaPlayerManager {
+    class Base(private val context: Context, private val store: PlayerInfoStore) : MediaPlayerManager {
 
-        private var volume: Float = 1f
         private var mediaPlayer: MediaPlayer? = prepareMediaPlayer()
+        private var volume: Float = 1f
 
         override fun setAudio(audio: AudioInfoUi, type: AudioPlayListType) = try {
             if (audio.id != store.fetchInfo().playback.currentAudio?.id) {
@@ -69,27 +64,6 @@ interface MediaPlayerManager : MediaPlayerVolume, MediaPlayerListeners {
             }
         } catch (e: Exception) {
             store.sendError(PlayerError.DATA_SOURCE)
-        }
-
-        override fun setVolume(value: Float) = store.updateInfo {
-            volume = value
-            mediaPlayer?.setVolume(volume, volume)
-            copy(playback = playback.copy(volume = value))
-        }
-
-        override fun fetchVolume(): Float {
-            return volume
-        }
-
-        override fun onPrepared(player: MediaPlayer?) = play()
-
-        override fun onCompletion(player: MediaPlayer?) = stop()
-
-        override fun onError(player: MediaPlayer?, error: Int, extra: Int): Boolean {
-            store.sendError(PlayerError.OTHER)
-            mediaPlayer?.release()
-            mediaPlayer = prepareMediaPlayer()
-            return true
         }
 
         override fun play() = store.updateInfo {
@@ -124,6 +98,27 @@ interface MediaPlayerManager : MediaPlayerVolume, MediaPlayerListeners {
             mediaPlayer?.release()
             mediaPlayer = null
             copy(playback = PlaybackInfoUi(volume = volume))
+        }
+
+        override fun setVolume(value: Float) = store.updateInfo {
+            volume = value
+            mediaPlayer?.setVolume(volume, volume)
+            copy(playback = playback.copy(volume = value))
+        }
+
+        override fun fetchVolume(): Float {
+            return volume
+        }
+
+        override fun onPrepared(player: MediaPlayer?) = play()
+
+        override fun onCompletion(player: MediaPlayer?) = stop()
+
+        override fun onError(player: MediaPlayer?, error: Int, extra: Int): Boolean {
+            store.sendError(PlayerError.OTHER)
+            mediaPlayer?.release()
+            mediaPlayer = prepareMediaPlayer()
+            return true
         }
 
         private fun prepareMediaPlayer() = MediaPlayer().apply {

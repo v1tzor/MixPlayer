@@ -24,9 +24,7 @@ import javax.inject.Inject
  * @author Stanislav Aleshin on 17.06.2023
  */
 internal interface HomeErrorHandler : ErrorHandler<HomeFailures> {
-
     class Base @Inject constructor() : HomeErrorHandler {
-
         override fun handle(throwable: Throwable) = when (throwable) {
             else -> HomeFailures.OtherError(throwable)
         }

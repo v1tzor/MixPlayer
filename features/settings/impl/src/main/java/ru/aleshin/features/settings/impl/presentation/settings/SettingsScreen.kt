@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.screen.Screen
 import ru.aleshin.core.common.platform.screen.ScreenContent
+import ru.aleshin.core.ui.views.ErrorSnackbar
 import ru.aleshin.features.settings.impl.presentation.mappers.mapToMessage
 import ru.aleshin.features.settings.impl.presentation.settings.contract.SettingsEffect
 import ru.aleshin.features.settings.impl.presentation.settings.contract.SettingsEvent
@@ -62,11 +63,10 @@ internal class SettingsScreen @Inject constructor() : Screen {
                 topBar = {
                     SettingsTopBar(
                         onBackPress = { dispatchEvent(SettingsEvent.PressBackButton) },
-                        onResetClick = { dispatchEvent(SettingsEvent.PressResetButton) },
                     )
                 },
                 snackbarHost = {
-                    SnackbarHost(hostState = snackbarState)
+                    SnackbarHost(hostState = snackbarState) { ErrorSnackbar(it) }
                 },
             )
 

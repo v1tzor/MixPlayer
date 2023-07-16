@@ -27,9 +27,9 @@ internal data class PlayerStrings(
     val backDesk: String?,
     val systemAudioTitle: String,
     val appAudioTitle: String,
-    val previousTrackDesk: String,
-    val nextTrackDesk: String,
-    val playPauseTrackDesk: String,
+    val previousAudioDesk: String,
+    val nextAudioDesk: String,
+    val playPauseAudioDesk: String,
     val orientationDesk: String,
 ) {
     companion object {
@@ -39,9 +39,9 @@ internal data class PlayerStrings(
             backDesk = "Назад",
             systemAudioTitle = "Системные треки",
             appAudioTitle = "Треки приложения",
-            previousTrackDesk = "Предыдущий трек",
-            nextTrackDesk = "Следующий трек",
-            playPauseTrackDesk = "Плей/Пауза",
+            previousAudioDesk = "Предыдущий трек",
+            nextAudioDesk = "Следующий трек",
+            playPauseAudioDesk = "Плей/Пауза",
             orientationDesk = "Сменить ориентацию",
         )
         val ENGLISH = PlayerStrings(
@@ -50,9 +50,9 @@ internal data class PlayerStrings(
             backDesk = "Back",
             systemAudioTitle = "System tracks",
             appAudioTitle = "App tracks",
-            previousTrackDesk = "Previous track",
-            nextTrackDesk = "Next track",
-            playPauseTrackDesk = "Play/Pause",
+            previousAudioDesk = "Previous track",
+            nextAudioDesk = "Next track",
+            playPauseAudioDesk = "Play/Pause",
             orientationDesk = "Change orientation"
         )
     }

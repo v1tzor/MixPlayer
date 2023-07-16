@@ -49,7 +49,6 @@ import ru.aleshin.core.common.functional.audio.AudioPlayListUi
 import ru.aleshin.core.ui.views.highPlaceholder
 import ru.aleshin.core.common.functional.audio.AudioPlayListType
 import ru.aleshin.core.common.functional.video.VideoInfoUi
-import ru.aleshin.core.common.managers.toImageBitmap
 import ru.aleshin.features.home.impl.presentation.home.contract.HomeViewState
 import ru.aleshin.features.home.impl.presentation.home.views.HomeSearchBar
 import ru.aleshin.features.home.impl.presentation.home.views.EmptyAudioItem

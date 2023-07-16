@@ -16,12 +16,10 @@
 
 package ru.aleshin.features.player.impl.presentation.video.screenmodel
 
-import android.util.Log
 import kotlinx.coroutines.flow.flow
 import ru.aleshin.core.common.platform.screenmodel.work.ActionResult
 import ru.aleshin.core.common.platform.screenmodel.work.FlowWorkProcessor
 import ru.aleshin.core.common.platform.screenmodel.work.WorkCommand
-import ru.aleshin.features.player.impl.navigation.PlayerNavigationManager
 import ru.aleshin.features.player.impl.presentation.video.contract.VideoAction
 import ru.aleshin.features.player.impl.presentation.video.contract.VideoEffect
 import javax.inject.Inject

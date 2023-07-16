@@ -79,9 +79,7 @@ internal class VideoScreen @Inject constructor() : Screen {
                     )
                 },
                 snackbarHost = {
-                    SnackbarHost(hostState = snackbarState) {
-                        ErrorSnackbar(snackbarData = it)
-                    }
+                    SnackbarHost(hostState = snackbarState) { ErrorSnackbar(snackbarData = it) }
                 },
             )
 

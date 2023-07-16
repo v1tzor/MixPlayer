@@ -29,13 +29,11 @@ interface MediaController {
     fun work(command: MediaCommand)
 
     class Base @Inject constructor(
-        private val mediaCommunicator: MediaCommunicator
+        private val communicator: MediaCommunicator
     ) : MediaController {
 
-        override fun work(command: MediaCommand) = mediaCommunicator.update(command)
+        override fun work(command: MediaCommand) = communicator.update(command)
 
-        override suspend fun collectCommands(
-            collector: FlowCollector<MediaCommand>
-        ) = mediaCommunicator.collect(collector)
+        override suspend fun collectCommands(collector: FlowCollector<MediaCommand>) = communicator.collect(collector)
     }
 }

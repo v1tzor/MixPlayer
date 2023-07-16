@@ -32,7 +32,6 @@ internal data class SettingsViewState(
 internal sealed class SettingsEvent : BaseEvent {
     object Init : SettingsEvent()
     object PressBackButton : SettingsEvent()
-    object PressResetButton : SettingsEvent()
     data class ChangedGeneralSettings(val settings: GeneralSettingsUi?) : SettingsEvent()
 }
 

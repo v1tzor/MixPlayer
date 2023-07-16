@@ -81,9 +81,8 @@ internal class VideoScreenModel @Inject constructor(
     }
 
     override fun onDispose() {
-        Log.d("test", "dispose")
-        PlayerComponentHolder.clear()
         super.onDispose()
+        PlayerComponentHolder.clear()
     }
 }
 

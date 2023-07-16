@@ -16,7 +16,6 @@
 
 package ru.aleshin.features.home.impl.navigation
 
-import android.util.Log
 import cafe.adriel.voyager.core.screen.Screen
 import ru.aleshin.core.common.di.FeatureRouter
 import ru.aleshin.core.common.navigation.Router
@@ -24,7 +23,6 @@ import ru.aleshin.features.home.api.di.HomeScreens
 import ru.aleshin.features.home.impl.presentation.home.HomeScreen
 import ru.aleshin.features.home.impl.presentation.details.DetailsScreen
 import ru.aleshin.features.home.impl.presentation.details.screenmodel.DetailsInfoCommunicator
-import ru.aleshin.features.home.impl.presentation.mappers.mapToDomain
 import ru.aleshin.features.player.api.navigation.PlayerFeatureStarter
 import ru.aleshin.features.player.api.navigation.PlayerScreens
 import ru.aleshin.features.settings.api.navigation.SettingsFeatureStarter

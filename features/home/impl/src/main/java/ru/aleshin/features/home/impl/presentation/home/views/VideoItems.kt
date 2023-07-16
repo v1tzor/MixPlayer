@@ -92,11 +92,7 @@ internal fun VideoItem(
                 modifier = Modifier.padding(vertical = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Column(
-                    modifier = Modifier
-                        .padding(horizontal = 12.dp)
-                        .weight(1f)
-                ) {
+                Column(modifier = Modifier.padding(horizontal = 12.dp).weight(1f)) {
                     Text(
                         text = HomeThemeRes.strings.videoNameTitle,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,

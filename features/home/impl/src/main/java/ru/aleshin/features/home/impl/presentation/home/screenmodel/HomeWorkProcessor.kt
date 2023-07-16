@@ -49,7 +49,7 @@ internal interface HomeWorkProcessor : WorkProcessor<HomeWorkCommand, HomeAction
     ) : HomeWorkProcessor {
 
         override suspend fun work(command: HomeWorkCommand) = when (command) {
-            is HomeWorkCommand.LoadTracks -> loadMediaWork()
+            is HomeWorkCommand.LoadMedia -> loadMediaWork()
             is HomeWorkCommand.SearchRequest -> searchRequestWork(command.playLists, command.videos, command.request)
             is HomeWorkCommand.OpenDetails -> openDetailsWork(command.type, command.playlists)
             is HomeWorkCommand.OpenAudio -> openAudioWork(command.audio, command.type)
@@ -92,9 +92,9 @@ internal interface HomeWorkProcessor : WorkProcessor<HomeWorkCommand, HomeAction
 
         private suspend fun openDetailsWork(
             type: AudioPlayListType,
-            playlists: List<AudioPlayListUi>
+            playLists: List<AudioPlayListUi>
         ): WorkResult<HomeAction, HomeEffect> {
-            val playlist = playlists.find { it.listType == type }
+            val playlist = playLists.find { it.listType == type }
             navigationManager.navigateToLocalScreen(HomeScreens.Details(checkNotNull(playlist)))
             return ActionResult(HomeAction.Navigate)
         }
@@ -115,7 +115,7 @@ internal interface HomeWorkProcessor : WorkProcessor<HomeWorkCommand, HomeAction
 }
 
 internal sealed class HomeWorkCommand : WorkCommand {
-    object LoadTracks : HomeWorkCommand()
+    object LoadMedia : HomeWorkCommand()
 
     data class SearchRequest(
         val playLists: List<AudioPlayListUi>,

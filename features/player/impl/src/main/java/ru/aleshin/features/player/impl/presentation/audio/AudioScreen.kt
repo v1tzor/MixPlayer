@@ -24,18 +24,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.media3.common.MediaItem
-import androidx.media3.exoplayer.ExoPlayer
 import cafe.adriel.voyager.core.screen.Screen
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import ru.aleshin.core.common.platform.screen.ScreenContent
 import ru.aleshin.core.ui.theme.MixPlayerRes
 import ru.aleshin.core.ui.views.ErrorSnackbar
-import ru.aleshin.features.player.impl.presentation.audio.contract.AudioAction
 import ru.aleshin.features.player.impl.presentation.audio.contract.AudioEffect
 import ru.aleshin.features.player.impl.presentation.audio.contract.AudioEvent
 import ru.aleshin.features.player.impl.presentation.audio.contract.AudioViewState
@@ -94,7 +89,7 @@ internal class AudioScreen @Inject constructor() : Screen {
                             withDismissAction = true,
                         )
                     }
-                    AudioEffect.NextTrack -> { dispatchEvent(AudioEvent.PressNextButton) }
+                    AudioEffect.NextAudio -> { dispatchEvent(AudioEvent.PressNextButton) }
                 }
             }
             AudioSystemUi()

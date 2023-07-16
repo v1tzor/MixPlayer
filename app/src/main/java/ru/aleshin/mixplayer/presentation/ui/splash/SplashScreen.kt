@@ -18,8 +18,6 @@ package ru.aleshin.mixplayer.presentation.ui.splash
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import cafe.adriel.voyager.core.screen.Screen
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import ru.aleshin.core.ui.theme.material.splash
@@ -31,13 +29,9 @@ object SplashScreen : Screen {
 
     @Composable
     override fun Content() {
-        SplashSystemUi()
-        SplashContent()
-    }
-
-    @Composable
-    private fun SplashSystemUi() {
         val systemUiController = rememberSystemUiController()
+
+        SplashContent()
 
         SideEffect {
             systemUiController.setNavigationBarColor(color = splash, darkIcons = false)

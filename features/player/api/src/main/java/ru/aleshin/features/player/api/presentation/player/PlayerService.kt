@@ -39,14 +39,9 @@ import ru.aleshin.core.common.functional.audio.PlayerInfo
 import ru.aleshin.core.common.managers.AudioManagerController
 import ru.aleshin.core.common.notifications.NotificationCreator
 
-
 /**
  * @author Stanislav Aleshin on 13.07.2023.
  */
-abstract class PlayerServiceAbstract : Service(), PlayerInfoStoreCollect, OnAudioFocusChangeListener {
-    abstract fun workMediaCommand(mediaCommand: MediaCommand)
-}
-
 class PlayerService : PlayerServiceAbstract() {
 
     private val job = SupervisorJob()
@@ -54,8 +49,8 @@ class PlayerService : PlayerServiceAbstract() {
 
     private lateinit var audioManager: AudioManager
     private lateinit var audioManagerController: AudioManagerController
-    private lateinit var mediaPlayerManager: MediaPlayerManager
     private lateinit var playerStore: PlayerInfoStore
+    private lateinit var mediaPlayerManager: MediaPlayerManager
 
     private val binder by lazy { PlayerServiceBinder(this) }
 
@@ -68,19 +63,15 @@ class PlayerService : PlayerServiceAbstract() {
     override fun onCreate() {
         super.onCreate()
         audioManager = getSystemService(AudioManager::class.java)
+        audioManagerController = AudioManagerController.Base(audioManager, audioAttributes)
         playerStore = PlayerInfoStore.Base()
         mediaPlayerManager = MediaPlayerManager.Base(this, playerStore)
-        audioManagerController = AudioManagerController.Base(audioManager, audioAttributes)
         audioManagerController.captureAudioFocus(this)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         startForeground(Constants.Notification.FOREGROUND_NOTIFY_ID, createNotification())
-
-        when (intent?.action) {
-            Constants.Notification.ACTION_PLAY_PAUSE -> workMediaCommand(MediaCommand.PlayOrPause)
-        }
-
+        handleAction(intent?.action)
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -96,8 +87,8 @@ class PlayerService : PlayerServiceAbstract() {
     override fun onDestroy() {
         super.onDestroy()
         job.cancel()
-        audioManagerController.freeAudioFocus(this)
         mediaPlayerManager.release()
+        audioManagerController.freeAudioFocus(this)
         stopForeground(STOP_FOREGROUND_REMOVE)
     }
 
@@ -126,6 +117,11 @@ class PlayerService : PlayerServiceAbstract() {
                 if (isPlaying()) setVolume(0.1f)
             }
         }
+    }
+
+    private fun handleAction(action: String?) = when (action) {
+        Constants.Notification.ACTION_PLAY_PAUSE -> workMediaCommand(MediaCommand.PlayOrPause)
+        else -> Unit
     }
 
     private fun createNotification(): Notification {

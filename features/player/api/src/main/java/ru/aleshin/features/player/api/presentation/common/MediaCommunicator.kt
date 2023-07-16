@@ -25,7 +25,6 @@ import javax.inject.Inject
  */
 interface MediaCommunicator : Communicator<MediaCommand> {
     class Base @Inject constructor() : MediaCommunicator, Communicator.AbstractSharedFlow<MediaCommand>(
-        flowReplay = 0,
         flowBufferCapacity = 1,
     )
 }

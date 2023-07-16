@@ -39,7 +39,6 @@ import ru.aleshin.features.settings.impl.presentation.theme.SettingsThemeRes
 internal fun SettingsTopBar(
     modifier: Modifier = Modifier,
     onBackPress: () -> Unit,
-    onResetClick: () -> Unit,
 ) {
     TopAppBar(
         modifier = modifier,
@@ -55,27 +54,8 @@ internal fun SettingsTopBar(
                 )
             }
         },
-        actions = {
-            TopAppBarMoreActions(
-                items = SettingsTopBarActions.values(),
-                onItemClick = {
-                    when (it) {
-                        SettingsTopBarActions.RESET -> onResetClick()
-                    }
-                },
-                moreIconDescription = SettingsThemeRes.strings.moreDesk,
-            )
-        },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.background,
         ),
     )
-}
-
-internal enum class SettingsTopBarActions : TopAppBarAction {
-    RESET {
-        override val icon: Int @Composable get() = SettingsThemeRes.icons.reset
-        override val title: String @Composable get() = SettingsThemeRes.strings.resetTitle
-        override val isAlwaysShow: Boolean get() = false
-    },
 }

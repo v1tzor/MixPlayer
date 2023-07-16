@@ -41,6 +41,6 @@ object SettingsComponentHolder : BaseComponentHolder<SettingsFeatureApi, Setting
     }
 
     internal fun fetchComponent() = checkNotNull(component) {
-        "Settings Component is not initialized"
+        "SettingsComponent is not initialized"
     }
 }

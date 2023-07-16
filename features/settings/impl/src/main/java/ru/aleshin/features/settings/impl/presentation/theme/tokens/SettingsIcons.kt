@@ -24,13 +24,11 @@ import ru.aleshin.features.settings.impl.R
  */
 internal data class SettingsIcons(
     val palette: Int,
-    val reset: Int,
     val language: Int,
 ) {
     companion object {
         val DEFAULT = SettingsIcons(
             palette = R.drawable.ic_palette,
-            reset = R.drawable.ic_reset,
             language = R.drawable.ic_language,
         )
     }

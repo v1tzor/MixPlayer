@@ -46,6 +46,6 @@ sealed class MainEffect : BaseUiEffect {
 }
 
 sealed class MainAction : BaseAction {
-    data class ChangeGeneralSettings(val generalSettings: GeneralSettingsUi) : MainAction()
     object Navigate : MainAction()
+    data class ChangeGeneralSettings(val generalSettings: GeneralSettingsUi) : MainAction()
 }

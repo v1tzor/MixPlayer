@@ -46,7 +46,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -54,7 +53,6 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import ru.aleshin.core.common.extensions.mapAudioPathToPreview
 import ru.aleshin.core.common.extensions.toSecondsAndMinutesString
-import ru.aleshin.core.common.managers.toImageBitmap
 import ru.aleshin.features.player.impl.presentation.audio.contract.AudioViewState
 import ru.aleshin.features.player.impl.presentation.theme.PlayerThemeRes
 
@@ -72,18 +70,16 @@ internal fun AudioContent(
 ) {
     val scrollState = rememberScrollState()
     Column(modifier.fillMaxSize().verticalScroll(scrollState), verticalArrangement = Arrangement.SpaceEvenly) {
-        TrackImage(
-            modifier = Modifier
-                .padding(bottom = 48.dp)
-                .align(Alignment.CenterHorizontally),
+        AudioImage(
+            modifier = Modifier.padding(bottom = 48.dp).align(Alignment.CenterHorizontally),
             image = state.currentAudio?.imagePath?.mapAudioPathToPreview(),
         )
         Column {
-            TrackNameSection(
+            AudioNameSection(
                 title = state.currentAudio?.title,
                 authorOrAlbum = state.currentAudio?.artist ?: state.currentAudio?.album
             )
-            TrackControlSection(
+            AudioControlSection(
                 position = state.lostTime * (1f / (state.currentAudio?.duration ?: 1)) ,
                 lostTime = state.lostTime.toSecondsAndMinutesString(),
                 nextTime = state.nextTime.toSecondsAndMinutesString(),
@@ -98,7 +94,7 @@ internal fun AudioContent(
 }
 
 @Composable
-internal fun TrackImage(
+internal fun AudioImage(
     modifier: Modifier = Modifier,
     image: ImageBitmap?,
 ) {
@@ -132,15 +128,13 @@ internal fun TrackImage(
 }
 
 @Composable
-internal fun TrackNameSection(
+internal fun AudioNameSection(
     modifier: Modifier = Modifier,
     title: String?,
     authorOrAlbum: String?,
 ) {
     Column(
-        modifier = modifier
-            .padding(vertical = 8.dp)
-            .fillMaxWidth(),
+        modifier = modifier.padding(vertical = 8.dp).fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(6.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -152,7 +146,6 @@ internal fun TrackNameSection(
                 fontWeight = FontWeight.Bold,
             ),
         )
-//        ExoPlayer.Builder(LocalContext.current).build()
         Text(
             modifier = Modifier,
             text = authorOrAlbum ?: "",
@@ -164,7 +157,7 @@ internal fun TrackNameSection(
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-internal fun TrackControlSection(
+internal fun AudioControlSection(
     modifier: Modifier = Modifier,
     position: Float,
     lostTime: String,
@@ -193,11 +186,7 @@ internal fun TrackControlSection(
                     )
                 }
             )
-            Row(
-                modifier = Modifier
-                    .padding(horizontal = 8.dp)
-                    .offset(y = (-8).dp)
-            ) {
+            Row(modifier = Modifier.padding(horizontal = 8.dp).offset(y = (-8).dp)) {
                 Text(
                     text = lostTime,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -223,7 +212,7 @@ internal fun TrackControlSection(
                 Icon(
                     modifier = Modifier.size(36.dp),
                     painter = painterResource(id = PlayerThemeRes.icons.previous),
-                    contentDescription = PlayerThemeRes.strings.previousTrackDesk,
+                    contentDescription = PlayerThemeRes.strings.previousAudioDesk,
                     tint = MaterialTheme.colorScheme.onSurface,
                 )
             }
@@ -240,7 +229,7 @@ internal fun TrackControlSection(
                         true -> painterResource(id = PlayerThemeRes.icons.pause)
                         false -> painterResource(id = PlayerThemeRes.icons.play)
                     },
-                    contentDescription = PlayerThemeRes.strings.previousTrackDesk,
+                    contentDescription = PlayerThemeRes.strings.playPauseAudioDesk,
                     tint = MaterialTheme.colorScheme.onSurface,
                 )
             }
@@ -251,7 +240,7 @@ internal fun TrackControlSection(
                 Icon(
                     modifier = Modifier.size(36.dp),
                     painter = painterResource(id = PlayerThemeRes.icons.next),
-                    contentDescription = PlayerThemeRes.strings.previousTrackDesk,
+                    contentDescription = PlayerThemeRes.strings.nextAudioDesk,
                     tint = MaterialTheme.colorScheme.onSurface,
                 )
             }

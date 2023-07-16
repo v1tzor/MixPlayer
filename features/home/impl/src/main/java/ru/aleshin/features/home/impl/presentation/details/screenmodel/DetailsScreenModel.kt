@@ -58,9 +58,9 @@ internal class DetailsScreenModel @Inject constructor(
                 val command = DetailsWorkCommand.LoadPlaylist
                 detailsWorkProcessor.work(command).collectAndHandleWork()
             }
-            is DetailsEvent.PressTrackItem -> {
-                val playlist = checkNotNull(state().playlist)
-                val command = DetailsWorkCommand.PlayAudio(event.track, playlist)
+            is DetailsEvent.PressAudioItem -> {
+                val playList = checkNotNull(state().playList)
+                val command = DetailsWorkCommand.PlayAudio(event.track, playList)
                 detailsWorkProcessor.work(command).collectAndHandleWork()
             }
             is DetailsEvent.PressBackButton -> {
@@ -74,14 +74,14 @@ internal class DetailsScreenModel @Inject constructor(
         currentState: DetailsViewState,
     ) = when (action) {
         is DetailsAction.Navigation -> currentState.copy(
-            playlist = null,
+            playList = null,
         )
         is DetailsAction.UpdateLoading -> currentState.copy(
             isLoading = action.isLoading
         )
-        is DetailsAction.UpdatePlaylist -> currentState.copy(
+        is DetailsAction.UpdatePlayList -> currentState.copy(
             isLoading = false,
-            playlist = action.playlist,
+            playList = action.playList,
         )
     }
 }

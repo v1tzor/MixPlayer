@@ -41,6 +41,6 @@ object HomeComponentHolder : BaseComponentHolder<HomeFeatureApi, HomeFeatureDepe
     }
 
     internal fun fetchComponent() = checkNotNull(component) {
-        "Home component is not initialized"
+        "HomeComponent is not initialized"
     }
 }

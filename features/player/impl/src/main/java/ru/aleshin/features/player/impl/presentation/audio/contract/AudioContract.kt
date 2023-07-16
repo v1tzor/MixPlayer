@@ -21,7 +21,6 @@ import ru.aleshin.core.common.functional.audio.AudioInfoUi
 import ru.aleshin.core.common.functional.audio.AudioPlayListUi
 import ru.aleshin.core.common.functional.audio.PlayerInfo
 import ru.aleshin.core.common.platform.screenmodel.contract.*
-import ru.aleshin.features.home.api.domain.entities.AudioPlayList
 import ru.aleshin.features.player.impl.domain.entities.PlayerFailures
 
 /**
@@ -49,7 +48,7 @@ internal sealed class AudioEvent : BaseEvent {
 
 internal sealed class AudioEffect : BaseUiEffect {
     data class ShowError(val failures: PlayerFailures) : AudioEffect()
-    object NextTrack : AudioEffect()
+    object NextAudio : AudioEffect()
 }
 
 internal sealed class AudioAction : BaseAction {

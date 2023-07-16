@@ -29,14 +29,12 @@ interface PlaybackManager {
     fun sendInfo(info: PlayerInfo)
 
     class Base @Inject constructor(
-        private val playbackCommunicator: PlaybackCommunicator
+        private val communicator: PlaybackCommunicator
     ) : PlaybackManager {
 
-        override fun sendInfo(info: PlayerInfo) = playbackCommunicator.update(info)
+        override fun sendInfo(info: PlayerInfo) = communicator.update(info)
 
-        override suspend fun collectInfo(
-            collector: FlowCollector<PlayerInfo>
-        ) = playbackCommunicator.collect(collector)
+        override suspend fun collectInfo(collector: FlowCollector<PlayerInfo>) = communicator.collect(collector)
     }
 
 }

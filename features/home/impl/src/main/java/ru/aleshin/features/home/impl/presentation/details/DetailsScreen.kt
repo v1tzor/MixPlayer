@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.screen.Screen
 import ru.aleshin.core.common.platform.screen.ScreenContent
+import ru.aleshin.core.ui.views.ErrorSnackbar
 import ru.aleshin.features.home.impl.presentation.details.contract.DetailsEffect
 import ru.aleshin.features.home.impl.presentation.details.contract.DetailsEvent
 import ru.aleshin.features.home.impl.presentation.details.contract.DetailsViewState
@@ -56,14 +57,14 @@ internal class DetailsScreen @Inject constructor() : Screen {
                     DetailsContent(
                         state = state,
                         modifier = Modifier.padding(paddingValues),
-                        onItemClick = { dispatchEvent(DetailsEvent.PressTrackItem(it)) }
+                        onItemClick = { dispatchEvent(DetailsEvent.PressAudioItem(it)) }
                     )
                 },
                 topBar = {
                     DetailsTopBar(onBackPress = { dispatchEvent(DetailsEvent.PressBackButton) })
                 },
                 snackbarHost = {
-                    SnackbarHost(hostState = snackbarState)
+                    SnackbarHost(hostState = snackbarState) { ErrorSnackbar(it) }
                 },
             )
 

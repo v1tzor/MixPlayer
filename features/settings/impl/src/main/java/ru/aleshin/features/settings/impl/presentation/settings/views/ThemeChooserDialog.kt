@@ -57,9 +57,7 @@ internal fun ThemeChooserDialog(
 
     AlertDialog(onDismissRequest = onCloseDialog) {
         Surface(
-            modifier = modifier
-                .width(280.dp)
-                .wrapContentHeight(),
+            modifier = modifier.width(280.dp).wrapContentHeight(),
             shape = MaterialTheme.shapes.extraLarge,
             color = MaterialTheme.colorScheme.surfaceContainerHigh,
         ) {

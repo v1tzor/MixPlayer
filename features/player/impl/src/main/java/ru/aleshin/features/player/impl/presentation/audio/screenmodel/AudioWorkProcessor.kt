@@ -18,6 +18,7 @@ package ru.aleshin.features.player.impl.presentation.audio.screenmodel
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
+import ru.aleshin.core.common.functional.Constants
 import ru.aleshin.core.common.functional.Either
 import ru.aleshin.core.common.functional.MediaCommand
 import ru.aleshin.core.common.platform.screenmodel.work.ActionResult
@@ -58,7 +59,7 @@ internal interface AudioWorkProcessor : FlowWorkProcessor<AudioWorkCommand, Audi
         private fun receivePlayerInfoWork() = flow {
             playbackManager.collectInfo { playerInfo ->
                 emit(ActionResult(AudioAction.UpdatePlayerInfo(playerInfo)))
-                if (playerInfo.playback.isComplete) emit(EffectResult(AudioEffect.NextTrack))
+                if (playerInfo.playback.isComplete) emit(EffectResult(AudioEffect.NextAudio))
             }
         }
 
@@ -76,7 +77,7 @@ internal interface AudioWorkProcessor : FlowWorkProcessor<AudioWorkCommand, Audi
         private fun setUpParametersWork() = flow {
             when (val result = playerSettingsInteractor.fetchSettings()) {
                 is Either.Right -> emit(ActionResult(AudioAction.UpdateVolume(result.data.volume))).apply {
-                    delay(200L)
+                    delay(Constants.Delay.SETUP)
                     mediaController.work(MediaCommand.ChangeVolume(result.data.volume))
                 }
                 is Either.Left -> emit(EffectResult(AudioEffect.ShowError(result.data)))

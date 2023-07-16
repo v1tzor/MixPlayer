@@ -19,7 +19,6 @@ package ru.aleshin.features.home.impl.presentation.nav
 import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.CurrentScreen
-import cafe.adriel.voyager.navigator.NavigatorDisposeBehavior
 import ru.aleshin.core.common.navigation.navigator.AppNavigator
 import ru.aleshin.core.common.navigation.navigator.rememberNavigatorManager
 import ru.aleshin.features.home.impl.di.holder.HomeComponentHolder
@@ -37,7 +36,6 @@ internal class NavScreen @Inject constructor() : Screen {
             navigatorManager = rememberNavigatorManager {
                 HomeComponentHolder.fetchComponent().fetchLocalNavigatorManager()
             },
-            disposeBehavior = NavigatorDisposeBehavior(false, false),
             content = { CurrentScreen() },
         )
     }

@@ -16,7 +16,6 @@
 package ru.aleshin.mixplayer.presentation.ui.main.viewmodel
 
 import ru.aleshin.core.common.managers.CoroutineManager
-import ru.aleshin.core.common.platform.communications.state.EffectCommunicator
 import ru.aleshin.core.common.platform.screenmodel.BaseViewModel
 import ru.aleshin.core.common.platform.screenmodel.work.WorkScope
 import ru.aleshin.mixplayer.presentation.ui.main.contract.MainAction
