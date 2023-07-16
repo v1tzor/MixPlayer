@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.MixPlayer" parent="Theme.Material3.DayNight.NoActionBar" />
+
+    <style name="Theme.MixPlayer.Splash" parent="Theme.MixPlayer">
+        <item name="android:windowBackground">#3161DB</item>
+        <item name="android:statusBarColor">#3161DB</item>
+    </style>
+</resources>
